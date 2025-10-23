@@ -19,11 +19,15 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Carga cotxes desde cotxes.json con control de errores
+# Carpeta actual del script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+JSON_PATH = os.path.join(BASE_DIR, "cotxes.json")
+
 try:
-    with open(r"D:\DAM\XML_\html\bot_py\cotxes.json", "r", encoding="utf-8") as f:
+    with open(JSON_PATH, "r", encoding="utf-8") as f:
         COTXES = json.load(f)
 except Exception as e:
-    logger.error(f"Error al cargar cotxes.json: {e}")
+    logging.error(f"Error al cargar cotxes.json: {e}")
     COTXES = []
 
 # /start
@@ -308,4 +312,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
